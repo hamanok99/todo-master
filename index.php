@@ -5,8 +5,8 @@ require "taskMgt.php";
 $taskManager = new TaskMgtClass();
 //未完了タスクを取得
 if (isset($_POST['inComplete'])){
-    $tasklist = $taskManager->getIncompleteList();
-    echo count($tasklist);
+    $tasklist = print_r($taskManager->getIncompleteList());
+    print_r($tasklist);
 }
 //完了タスクを取得
 if (isset($_POST['complete'])){

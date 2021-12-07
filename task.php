@@ -29,6 +29,11 @@ class TaskClass{
 
     }
 
+        //タスクが期限切れか確認するメソッド
+        public function getName(){
+            return $this->name;
+        }
+
     //タスクを登録するメソッド
     public function registTask(){
         require "connect.php";

@@ -6,7 +6,7 @@ $taskManager = new TaskMgtClass();
 //未完了タスクを取得
 if (isset($_POST['inComplete'])){
     $tasklist = $taskManager->getIncompleteList();
-    print_r($tasklist);
+    echo count($tasklist);
 }
 //完了タスクを取得
 if (isset($_POST['complete'])){
@@ -57,7 +57,10 @@ window.onload = regist;
         <title>ToDoリスト</title>
     </head>
     <body>
-        <form action="index.php" method="post" name='todo'>
+    <?php foreach ($tasklist as $task): ?>
+    <div>#</div>
+<?php endforeach; ?>
+    <form action="index.php" method="post" name='todo'>
             <div>
                 <h1>ToDoリスト</h1>
                 <table>

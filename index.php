@@ -58,8 +58,9 @@ window.onload = regist;
     </head>
     <body>
     <?php foreach ($tasklist as $task): ?>
-    <div><?php echo $task->getName() ?></div>
-<?php endforeach; ?>
+    <div><?php echo $task->name ?></div>
+    <div><?php echo $task->deadline ?></div>
+    <?php endforeach; ?>
     <form action="index.php" method="post" name='todo'>
             <div>
                 <h1>ToDoリスト</h1>
@@ -70,8 +71,8 @@ window.onload = regist;
                     </tr>
                     <?php foreach ($tasklist as $task): ?>
                         <tr>
-                            <td><?php echo $task->getName() ?></td>
-                            <td><?php echo $task->getName() ?></td>
+                            <td><?php echo $task->name ?></td>
+                            <td><?php echo $task->deadline ?></td>
                             <td><input type="button" value="完了"></td>
                         </tr>
                     <?php endforeach; ?>

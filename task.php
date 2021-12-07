@@ -1,16 +1,16 @@
 <?php
 class TaskClass{
     //ID
-    public $id;
+    private $id;
 
     //タイトルネーム
-    public $name;
+    private $name;
 
     //期限
-    public $deadline;
+    private $deadline;
 
     //完了フラグ
-    public $fix_flg;
+    private $fix_flg;
 
     function __construct($name, $deadline, $fix_flg, $id = null){
         $this->name = $name;

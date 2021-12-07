@@ -66,6 +66,7 @@ window.onload = regist;
                         <td>期限</td>
                     </tr>
                     <?php foreach ($tasklist as $task): ?>
+                        <?php print_r($task); ?>
                         <tr>
                             <td><?php echo $task->name; ?></td>
                             <td><?php echo $task->deadline; ?></td>

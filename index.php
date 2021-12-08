@@ -72,7 +72,7 @@ window.onload = regist;
                         <?php if ($task->expiredTask() && !$task->completeTask()): ?>
                             <td class="font_red"><?php echo $task->getName(); ?></td>
                             <td class="font_red"><?php echo $task->getDeadline(); ?></td>
-                            <td><input type="button" onclick="<?php echo $this->getId() ?>" value="完了"></td>
+                            <td><input type="button" onclick="" value="完了"></td>
                         <?php elseif($task->expiredTask() && $task->completeTask()): ?>
                             <td class="font_red"><?php echo $task->getName(); ?></td>
                             <td class="font_red"><?php echo $task->getDeadline(); ?></td>
@@ -82,7 +82,7 @@ window.onload = regist;
                         <?php else: ?>
                             <td class="font_black"><?php echo $task->getName(); ?></td>
                             <td class="font_black"><?php echo $task->getDeadline(); ?></td>
-                            <td><input type="button" onclick="<?php echo $this->getId() ?>" value="完了"></td>
+                            <td><input type="button" onclick="" value="完了"></td>
                         <?php endif; ?>
                         </tr>
                     <?php endforeach; ?>

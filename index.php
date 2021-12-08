@@ -1,27 +1,28 @@
 <?php
 require "task.php";
+$task = new TaskClass($_POST['name'],$_POST['deadline'],false);
+//タスク更新する
+if (isset($_POST['complete'])){
+    $task->updateTask($_POST['id']);
+}
 
 require "taskMgt.php";
 $taskManager = new TaskMgtClass();
 //未完了タスクを取得
 if (isset($_POST['inComplete'])){
-    $tasklist = print_r($taskManager->getIncompleteList());
-    print_r($tasklist);
+    $tasklist = $taskManager->getIncompleteList();
 }
 //完了タスクを取得
 if (isset($_POST['complete'])){
     $tasklist = $taskManager->getCompleteList();
-    print_r($tasklist);
 }
 //期限切れタスクを取得
 if (isset($_POST['expired'])){
     $tasklist = $taskManager->getExpiredList();
-    print_r($tasklist);
 }
 //全てのタスクを取得
 if (isset($_POST['all'])){
     $tasklist = $taskManager->getAllList();
-    print_r($tasklist);
 }
 ?>
 
@@ -54,14 +55,11 @@ window.onload = regist;
 <html>
     <head>
         <meta charset="utf-8">
+        <link rel="stylesheet" href="todo.css" media="all" />
         <title>ToDoリスト</title>
     </head>
     <body>
-    <?php foreach ($tasklist as $task): ?>
-    <div><?php echo $task->name ?></div>
-    <div><?php echo $task->deadline ?></div>
-    <?php endforeach; ?>
-    <form action="index.php" method="post" name='todo'>
+        <form action="index.php" method="post" name='todo'>
             <div>
                 <h1>ToDoリスト</h1>
                 <table>
@@ -71,15 +69,27 @@ window.onload = regist;
                     </tr>
                     <?php foreach ($tasklist as $task): ?>
                         <tr>
-                            <td><?php echo $task->name ?></td>
-                            <td><?php echo $task->deadline ?></td>
+                        <?php if ($task->expiredTask() && !$task->completeTask()): ?>
+                            <td class="font_red"><?php echo $task->getName(); ?></td>
+                            <td class="font_red"><?php echo $task->getDeadline(); ?></td>
                             <td><input type="button" onclick="<?php echo $this->getId() ?>" value="完了"></td>
+                        <?php elseif($task->expiredTask() && $task->completeTask()): ?>
+                            <td class="font_red"><?php echo $task->getName(); ?></td>
+                            <td class="font_red"><?php echo $task->getDeadline(); ?></td>
+                        <?php elseif($task->completeTask()): ?>
+                            <td class="font_gray"><?php echo $task->getName(); ?></td>
+                            <td class="font_gray"><?php echo $task->getDeadline(); ?></td>
+                        <?php else: ?>
+                            <td class="font_black"><?php echo $task->getName(); ?></td>
+                            <td class="font_black"><?php echo $task->getDeadline(); ?></td>
+                            <td><input type="button" onclick="<?php echo $this->getId() ?>" value="完了"></td>
+                        <?php endif; ?>
                         </tr>
                     <?php endforeach; ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars(@$_POST['name'], ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php echo htmlspecialchars(@$_POST['deadline'], ENT_QUOTES, 'UTF-8'); ?></td>
-                        </tr>
+                    <tr>
+                        <td><?php echo htmlspecialchars(@$_POST['name'], ENT_QUOTES, 'UTF-8'); ?></td>
+                        <td><?php echo htmlspecialchars(@$_POST['deadline'], ENT_QUOTES, 'UTF-8'); ?></td>
+                    </tr>
                 </table>
                 <hr>
                 <table>
@@ -95,7 +105,7 @@ window.onload = regist;
                             <input type="date" id="deadline" name="deadline" value="">
                         </td>
                         <td>
-                            <input type="submit" name="add" value="登録" onclick="nameCheck()">
+                            <input type="submit" value="登録" onclick="nameCheck()">
                         </td>
                         <td>
                             <input type="submit" name="inComplete" value="未完了">
@@ -115,3 +125,4 @@ window.onload = regist;
         </form>
     </body>
 </html>
+

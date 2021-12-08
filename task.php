@@ -29,10 +29,20 @@ class TaskClass{
 
     }
 
-        //タスクが期限切れか確認するメソッド
-        public function getName(){
-            return $this->name;
-        }
+    // 名前を取得する
+    public function getName(){
+        return $this->name;
+    }
+
+    // 期限を取得する
+    public function getDeadline(){
+        return $this->deadline;
+    }
+
+    // IDを取得する
+    public function getId(){
+        return $this->id;
+    }
 
     //タスクを登録するメソッド
     public function registTask(){

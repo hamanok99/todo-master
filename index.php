@@ -73,7 +73,7 @@ window.onload = regist;
                         <tr>
                             <td><?php echo $task->name ?></td>
                             <td><?php echo $task->deadline ?></td>
-                            <td><input type="button" value="完了"></td>
+                            <td><input type="button" onclick="<?php echo $this->getId() ?>" value="完了"></td>
                         </tr>
                     <?php endforeach; ?>
                         <tr>

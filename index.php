@@ -1,10 +1,7 @@
 <?php
 require "task.php";
 $task = new TaskClass($_POST['name'],$_POST['deadline'],false);
-//タスク更新する
-if (isset($_POST['complete'])){
-    $task->updateTask($_POST['id']);
-}
+$task->updateTask();
 
 require "taskMgt.php";
 $taskManager = new TaskMgtClass();
@@ -37,17 +34,35 @@ function nameCheck(){
     }
 }
 
+window.onload = function(){
+    regist();
+
+}
 function regist(){
     <?php if($_POST['name']): ?>
         <?php $task = new TaskClass($_POST['name'],$_POST['deadline'],false); ?>
-        var result ="<?php var_export($task->registTask()); ?>";
+        result ="<?php var_export($task->registTask()); ?>";
         var_dump(result);
         if(result){
             alert('登録完了いたしました');
         }
     <?php endif; ?>
+
+    <?php if($_POST['taskId']): ?>
+        <?php $task = new TaskClass($_POST['name'],$_POST['deadline'],false,$_POST['taskId']); ?>
+        result = <?php var_export($task->updateTask()); ?>
+        if(result){
+            alert('更新完了いたしました');
+        }
+    <?php endif; ?>
+
 }
 window.onload = regist;
+
+function updateOnflg(id) {
+    document.main.taskId.value = id;
+    document.main.submit();
+}
 
 </script>
 
@@ -59,7 +74,8 @@ window.onload = regist;
         <title>ToDoリスト</title>
     </head>
     <body>
-        <form action="index.php" method="post" name='todo'>
+        <form name="main" action="index.php" method="post" name='todo'>
+        <input type="hidden" name="taskId" value="" />
             <div>
                 <h1>ToDoリスト</h1>
                 <table>
@@ -72,7 +88,7 @@ window.onload = regist;
                         <?php if ($task->expiredTask() && !$task->completeTask()): ?>
                             <td class="font_red"><?php echo $task->getName(); ?></td>
                             <td class="font_red"><?php echo $task->getDeadline(); ?></td>
-                            <td><input type="button" onclick="<?php echo $task->getId() ?>" value="完了"></td>
+                            <td><input type="button" onclick="updateOnflg(<? echo $task->getId() ?>)" value="完了"></td>
                         <?php elseif($task->expiredTask() && $task->completeTask()): ?>
                             <td class="font_red"><?php echo $task->getName(); ?></td>
                             <td class="font_red"><?php echo $task->getDeadline(); ?></td>
@@ -82,7 +98,7 @@ window.onload = regist;
                         <?php else: ?>
                             <td class="font_black"><?php echo $task->getName(); ?></td>
                             <td class="font_black"><?php echo $task->getDeadline(); ?></td>
-                            <td><input type="button" onclick="<?php echo $task->getId() ?>" value="完了"></td>
+                            <td><input type="button" onclick="updateOnflg(<? echo $task->getId() ?>)" value="完了"></td>
                         <?php endif; ?>
                         </tr>
                     <?php endforeach; ?>
@@ -125,4 +141,3 @@ window.onload = regist;
         </form>
     </body>
 </html>
-

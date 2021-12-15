@@ -2,6 +2,16 @@
 require "task.php";
 ?>
 
+<script type="text/javascript">
+function edit(){
+    <?php if($_POST['taskId']): ?>
+        <?php $task = new TaskClass($_POST['name'],$_POST['deadline'],false,$_POST['taskId']); ?>
+        result = <?php var_export($task->editTask($_POST['taskId'])); ?>
+    <?php endif; ?>
+}
+window.onload = edit;
+</script>
+
 <!doctype html>
 <html>
     <head>

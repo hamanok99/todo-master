@@ -1,6 +1,7 @@
 <?php
 require "task.php";
 ?>
+
 <script type="text/javascript">
 function edit(){
     <?php if($_POST['taskId']): ?>
@@ -9,17 +10,14 @@ function edit(){
     <?php endif; ?>
 }
 window.onload = edit;
+
 function editOnflg(){
-    check = window.confirm('このタスクを更新します');
-    if (check){
-        document.todo.taskId = <? echo $_POST['taskId'] ?>;
-        document.todo.submit();
-        return true;
-    }else{
-        return false;
-    }
+    document.todo.taskId = <? echo $_POST['taskId'] ?>;
+    document.todo.submit();
+    return true;
 }
 </script>
+
 <!doctype html>
 <html>
     <head>

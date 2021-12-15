@@ -6,7 +6,7 @@ require "task.php";
 function edit(){
     <?php if($_POST['taskId']): ?>
         <?php $task = new TaskClass($_POST['name'],$_POST['deadline'],false,$_POST['taskId']); ?>
-        result = <?php var_export($task->editTask($_POST['taskId'])); ?>
+        alert(<?php echo $_POST['taskId'] ?>);
     <?php endif; ?>
 }
 window.onload = edit;

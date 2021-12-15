@@ -10,12 +10,6 @@ function edit(){
     <?php endif; ?>
 }
 window.onload = edit;
-
-function editOnflg(){
-    document.todo.taskId = <? echo $_POST['taskId'] ?>;
-    document.todo.submit();
-    return true;
-}
 </script>
 
 <!doctype html>
@@ -45,7 +39,7 @@ function editOnflg(){
                     </tr>
                     <tr>
                         <td>
-                            <input class="editButton" type="button" onclick="editOnflg()" value="更新">
+                            <input class="editButton" type="button" value="更新">
                         </td>
                         <td>
                             <input class="backButton" type="button" onclick="location.href='./index.php'" value="戻る">

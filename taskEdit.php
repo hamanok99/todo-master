@@ -1,7 +1,6 @@
 <?php
 require "task.php";
 ?>
-
 <script type="text/javascript">
 function edit(){
     <?php if($_POST['taskId']): ?>
@@ -10,7 +9,6 @@ function edit(){
     <?php endif; ?>
 }
 window.onload = edit;
-
 function editOnflg(){
     check = window.confirm('このタスクを更新します');
     if (check){
@@ -22,7 +20,6 @@ function editOnflg(){
     }
 }
 </script>
-
 <!doctype html>
 <html>
     <head>

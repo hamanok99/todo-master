@@ -6,10 +6,18 @@ require "task.php";
 function edit(){
     <?php if($_POST['taskId']): ?>
         <?php $task = new TaskClass($_POST['name'],$_POST['deadline'],false,$_POST['taskId']); ?>
-        alert(<?php echo $_POST['taskId'] ?>);
+        result = "<?php var_export($task->editTask($_POST['taskId'])); ?>";
+        if(result){
+            alert("タスクを更新しました");
+        }
     <?php endif; ?>
 }
-window.onload = edit;
+window.onload = edit();
+
+function editOnflg(id){
+    document.todo.taskId.value = id;
+    document.todo.submit();
+}
 </script>
 
 <!doctype html>
@@ -27,6 +35,7 @@ window.onload = edit;
                 <table class="textarea">
                     <tr>
                         <td>タイトル</td>
+                        <?php echo $sql; ?>
                         <td>
                             <input class="text" type="text" id="name" name="name" value="<?php echo $_POST['taskName'] ?>">
                         </td>
@@ -39,7 +48,7 @@ window.onload = edit;
                     </tr>
                     <tr>
                         <td>
-                            <input class="editButton" type="button" value="更新">
+                            <input class="editButton" type="button" onclick="editOnflg(<? echo $_POST['taskId'] ?>)" value="更新">
                         </td>
                         <td>
                             <input class="backButton" type="button" onclick="location.href='./index.php'" value="戻る">

@@ -33,7 +33,7 @@ $stmt = $pdo->query($query);
                 </tr>
             <?php endforeach; ?>
         </table>
-        <a href="index.php?page_id=<?php echo ($page_id++); ?>">次のページ</a>
-        <a href="index.php?page_id=<?php echo ($page_id--); ?>">前のページ</a>
+        <a href="index2.php?page_id=<?php echo ($page_id-1); ?>">前のページ</a>
+        <a href="index2.php?page_id=<?php echo ($page_id+1); ?>">次のページ</a>
     </body>
 </html>

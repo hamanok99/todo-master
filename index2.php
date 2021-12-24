@@ -26,9 +26,9 @@ $stmt = $pdo->query($query);
     <body>
         <form>
             <div>
-                <input type="button" onclick="location.href='./index2.html?page_id=1&mode=incomplete'" value="未完了一覧">
+                <input type="button" onclick="location.href='./index2.php?page_id=1&mode=incomplete'" value="未完了一覧">
                 &nbsp;
-                <input type="button" onclick="location.href='./index2.html?page_id=1&mode=complete'" value="完了一覧">
+                <input type="button" onclick="location.href='./index2.php?page_id=1&mode=complete'" value="完了一覧">
             </div>
         </form>
         <table border=1>

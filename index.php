@@ -5,9 +5,12 @@
 
     require "taskMgt.php";
     $taskManager = new TaskMgtClass();
+    echo "1";
     if(isset($_GET['mode'])){
+echo "2";
         //未完了タスクを取得
         if (isset($_POST['inComplete']) || isset($_GET['inComplete'])){
+echo "3";
             //必要なページ数取得
             $count_sql = "SELECT COUNT(*) AS count FROM public.todo WHERE fix_flg = false;";
 

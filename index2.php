@@ -25,8 +25,12 @@ $stmt = $pdo->query($query);
             <div><input type="button" onclick="location.href='./index2.html?page_id=1&mode=incomplete'" value="未完了一覧"></div>
             <div><input type="button" onclick="location.href='./index2.html?page_id=1&mode=complete'" value="完了一覧"></div>
         </form>
-        <table>
-            <?php foreach ($stmt as $data): ?>
+        <table border=1>
+        <tr>
+            <td>名前</td>
+            <td>期限</td>
+        </tr>
+        <?php foreach ($stmt as $data): ?>
                 <tr>
                     <td><?php echo $data[1];?></td>
                     <td><?php echo $data[2];?></td>

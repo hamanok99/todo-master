@@ -22,8 +22,11 @@ $stmt = $pdo->query($query);
 <html>
     <body>
         <form>
-            <div><input type="button" onclick="location.href='./index2.html?page_id=1&mode=incomplete'" value="未完了一覧"></div>
-            <div><input type="button" onclick="location.href='./index2.html?page_id=1&mode=complete'" value="完了一覧"></div>
+            <div>
+                <input type="button" onclick="location.href='./index2.html?page_id=1&mode=incomplete'" value="未完了一覧">
+                &nbsp;
+                <input type="button" onclick="location.href='./index2.html?page_id=1&mode=complete'" value="完了一覧">
+            </div>
         </form>
         <table border=1>
         <tr>
@@ -37,7 +40,11 @@ $stmt = $pdo->query($query);
                 </tr>
             <?php endforeach; ?>
         </table>
-        <a href="index2.php?page_id=<?php echo ($page_id-1); ?>">前のページ</a>
-        <a href="index2.php?page_id=<?php echo ($page_id+1); ?>">次のページ</a>
+        <?php if($page_id > 1): ?>
+        <a href="index2.php?<?php echo sprintf("page_id=%s&mode=%s",($page_id-1), $mode); ?>">前のページ</a>
+        <?php else: ?>
+        <span>前のページ</span>
+        <?php endif; ?>
+        <a href="index2.php?<?php echo sprintf("page_id=%s&mode=%s",($page_id-2), $mode); ?>">前のページ</a>
     </body>
 </html>

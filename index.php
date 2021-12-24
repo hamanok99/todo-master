@@ -7,7 +7,7 @@
     $taskManager = new TaskMgtClass();
     echo "1";
     if(isset($_GET['mode'])){
-echo "2";
+var_dump($_GET);
         //未完了タスクを取得
         if (isset($_POST['inComplete']) || isset($_GET['inComplete'])){
 echo "3";
